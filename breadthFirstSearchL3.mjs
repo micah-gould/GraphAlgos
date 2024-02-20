@@ -76,7 +76,7 @@ addExercise(function * (sim, state) {
   // Coloring of the tree edges
   const edges = g.edges().filter(edge => edge.to.π.toString() === edge.from.toString() || edge.from.π.toString() === edge.to.toString())
   const usedEdges = [...edges]
-  yield sim.askAll(edges, 'Select an edge on the tree', sim.blank(), edge => { edge.color = 'firebrick' })
+  yield sim.askAll(edge => { edge.color = 'firebrick' }, edges, 'Select an edge on the tree')
 
   // Coloring of the rest of the edges
   g.edges().filter(edge => !usedEdges.includes(edge)).forEach(edge => { edge.color = 'rgba(255, 255, 255, 0)' })

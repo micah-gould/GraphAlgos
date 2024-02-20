@@ -35,7 +35,8 @@ addExercise(function * (sim, state) {
   g.layout(sim, 1, 0.5, 15, 15)
   yield sim.start(state)
 
-  yield sim.askAll(item => { item.color = 'pink' }, g.verts())
+  yield sim.askAll(item => { item.color = 'pink' }, [...g.verts()].splice(0, 3))
+  yield sim.askAll(item => { item.color = 'red' }, [...g.verts()].splice(3))
   yield sim.askAll(item => { item.color = 'pink' }, g.edges())
 })
 // ]]>

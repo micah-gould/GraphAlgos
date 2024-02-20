@@ -85,17 +85,17 @@ addExercise(function * (sim, state) {
   // Coloring of back edges
   const backEdges = g.edges().filter(edge => edge.from.d > edge.to.d && edge.from.f < edge.to.f)
   let usedEdges = [...backEdges]
-  yield sim.askAll(backEdges, 'Select a back edge', sim.blank(), edge => { edge.color = 'pink' })
+  yield sim.askAll(edge => { edge.color = 'pink' }, backEdges, 'Select a back edge')
 
   // Coloring of cross edges
   const crossEdges = g.edges().filter(edge => edge.from.d > edge.to.d && edge.from.f > edge.to.f && !usedEdges.includes(edge))
   usedEdges = usedEdges.concat(crossEdges)
-  yield sim.askAll(crossEdges, 'Select a cross edge', sim.blank(), edge => { edge.color = 'rgba(255, 255, 255, 0)' })
+  yield sim.askAll(edge => { edge.color = 'rgba(255, 255, 255, 0)' }, crossEdges, 'Select a cross edge')
 
   // Coloring of forward edges
   const forwardEdges = g.edges().filter(edge => edge.to.π.toString() !== edge.from.toString() && !usedEdges.includes(edge))
   usedEdges = usedEdges.concat(forwardEdges)
-  yield sim.askAll(forwardEdges, 'Select a forward edge', sim.blank(), edge => { edge.color = 'blue' })
+  yield sim.askAll(edge => { edge.color = 'blue' }, forwardEdges, 'Select a forward edge')
 
   // Coloring of the rest of the edges
   g.edges().filter(edge => !usedEdges.includes(edge)).forEach(edge => { edge.color = 'firebrick' })
