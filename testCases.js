@@ -37,6 +37,7 @@ addExercise(function * (sim, state) {
 
   yield sim.askAll(item => { item.color = 'pink' }, [...g.verts()].splice(0, 3))
   yield sim.askAll(item => { item.color = 'red' }, [...g.verts()].splice(3))
+  yield sim.ask(g.edges()[0], 'select AB')
   yield sim.askAll(item => { item.color = 'pink' }, g.edges())
 })
 // ]]>
